@@ -23,4 +23,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'employee'], function() {
    Route::get('/show/{id}', [EmployeeController::class, 'show']);
    Route::put('/tag', [EmployeeController::class, 'tagEmployee']);
+   Route::post('/create', [EmployeeController::class, 'create']);
 });

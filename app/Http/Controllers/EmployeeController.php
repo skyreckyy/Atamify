@@ -48,8 +48,7 @@ class EmployeeController extends Controller
             ]);
         }
 
-        $status = ($employee->duty == 0) ? 1 : 0;
-        $employee->duty = $status;
+        $employee->duty = ($employee->duty == 0) ? 1 : 0;
 
         $employee->save();
 
@@ -62,7 +61,36 @@ class EmployeeController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'lastname' => 'required|string',
+            'email' => 'required|string',
             'code' => 'required|string'
+        ]);
+
+        if($validator->fails()) {
+            return response()->json([
+                'result' => 'error',
+                'message' => 'Something went wrong with the employee creation'
+            ]);
+        }
+
+        $data = array(
+          'name' => $request->name,
+          'lastname' => $request->lastname,
+          'email' => $request->email,
+          'active' => 1,
+          'duty' => 0,
+          'code_employee' => $request->code
+        );
+
+        $employee = new Employee($data);
+
+        $employee->save();
+
+        return response()->json([
+            'result' => 'success',
+            'message' => 'Employee with code ' . $request->code . " has been created successfully",
+            'employee' => $employee
         ]);
     }
 }
