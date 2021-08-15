@@ -193,6 +193,15 @@ h2 {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
 
+.img-fluid {
+    height: 50rem;
+    width: 50rem;
+}
+
+.login-form {
+    margin-top: 10rem;
+}
+
 .control--checkbox input:disabled ~ .control__indicator:after {
   border-color: #7b7b7b; }
 

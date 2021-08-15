@@ -58,4 +58,11 @@ class EmployeeController extends Controller
             'message' => 'Employee with code ' . $code . " has been updated successfully"
         ]);
     }
+
+    public function create(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'code' => 'required|string'
+        ]);
+    }
 }
