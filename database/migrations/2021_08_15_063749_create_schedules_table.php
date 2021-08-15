@@ -18,7 +18,6 @@ class CreateSchedulesTable extends Migration
             $table->bigInteger('employee')->unsigned();
             $table->timestamp('entrance')->nullable();
             $table->timestamp('exit')->nullable();
-            $table->integer('total_hours')->default(0);
             $table->timestamps();
         });
 
